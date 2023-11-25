@@ -24,6 +24,10 @@ module Administrate
         options.fetch(:index_display_count) { attached? && attachments.count != 1 }
       end
 
+      def index_preview_details
+        options.fetch(:index_preview_details, false)
+      end
+
       def show_display_preview?
         options.fetch(:show_display_preview, true)
       end
@@ -34,6 +38,14 @@ module Administrate
 
       def show_preview_variant
         options.fetch(:show_preview_variant, nil)
+      end
+
+      def show_preview_details
+        options.fetch(:show_preview_details, true)
+      end
+
+      def accepts
+        options.fetch(:accepts, [])
       end
 
       def many?

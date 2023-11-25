@@ -17,22 +17,13 @@ By default, the attribute is rendered as an image tag.
 
 <% if field.attached? %>
   <% if field.index_display_preview? %>
-    <% if field.many? %>
-      <%= render partial: 'fields/active_storage/items',
-                 locals: {
-                     field: field,
-                     variant: field.index_preview_variant,
-                     size: field.index_preview_size
-                 } %>
-    <% else %>
-      <%= render partial: 'fields/active_storage/item',
-                 locals: {
-                     field: field,
-                     attachment: field.data,
-                     variant: field.index_preview_variant,
-                     size: field.index_preview_size
-                 } %>
-    <% end %>
+    <%= render partial: 'fields/active_storage/items',
+                locals: {
+                    field: field,
+                    variant: field.index_preview_variant,
+                    size: field.index_preview_size,
+                    show_details: field.index_preview_details
+                } %>
   <% end %>
 
   <% if field.index_display_count? %>

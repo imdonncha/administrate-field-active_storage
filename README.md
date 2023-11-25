@@ -201,11 +201,23 @@ It might be necessary to add to app/assets/config/manifest.js:
 ```
 When set, this takes precedence over `index_preview_size` and `show_preview_size`.
 
+### index_preview_details and show_display_details
+
+Indicate whether or not to display image details such as filename and delete link for the index and show actions, respecitvely.
+
+Default to `false` and `true`, respectively.
+
 ### index_display_count
 
 Displays the number of attachments in the `index` action.
 
 Defaults to `true` if number of attachments is not 1.
+
+### accepts
+
+Limits the file types accepted by the file upload dialog.
+
+Defaults to no restriction.
 
 ### direct_upload
 

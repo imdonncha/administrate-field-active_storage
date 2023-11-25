@@ -1,29 +1,27 @@
-<div class="as-field as-field-<%= action_name %>">
-  <% if attachment.image? %>
-    <% if attachment.variable? %>
-      <% if variant.nil? %>
-        <%= image_tag(field.variant(attachment, resize_to_limit: size)) %>
-      <% else %>
-        <%= image_tag(attachment.variant(variant)) %>
-      <% end %>
+<% if attachment.image? %>
+  <% if attachment.variable? %>
+    <% if variant.nil? %>
+      <%= image_tag(field.variant(attachment, resize_to_limit: size), class: "pointer-events-none object-cover group-hover:opacity-75") %>
     <% else %>
-      <%= image_tag(field.url(attachment)) %>
+      <%= image_tag(attachment.variant(variant), class: "pointer-events-none object-cover group-hover:opacity-75") %>
     <% end %>
-  <% elsif attachment.video? %>
-    <% if attachment.previewable? %>
-      <%= video_tag(field.url(attachment),
-                    poster: field.preview(attachment, resize_to_limit: size),
-                    controls: true,
-                    autobuffer: true,
-                    class: "as-field-video") %>
-    <% else %>
-      <%= video_tag(field.url(attachment), controls: true, autobuffer: true, class: "as-field-video") %>
-    <% end %>
-  <% elsif attachment.audio? %>
-    <%= audio_tag(field.url(attachment), autoplay: false, controls: true) %>
-  <% elsif attachment.previewable? %>
-    <%= image_tag(field.preview(attachment, resize_to_limit: size)) %>
   <% else %>
-    <%= attachment.filename %>
+    <%= image_tag(field.url(attachment), class: "pointer-events-none object-cover group-hover:opacity-75") %>
   <% end %>
-</div>
+<% elsif attachment.video? %>
+  <% if attachment.previewable? %>
+    <%= video_tag(field.url(attachment),
+                  poster: field.preview(attachment, resize_to_limit: size),
+                  controls: true,
+                  autobuffer: true,
+                  class: "as-field-video") %>
+  <% else %>
+    <%= video_tag(field.url(attachment), controls: true, autobuffer: true, class: "as-field-video") %>
+  <% end %>
+<% elsif attachment.audio? %>
+  <%= audio_tag(field.url(attachment), autoplay: false, controls: true) %>
+<% elsif attachment.previewable? %>
+  <%= image_tag(field.preview(attachment, resize_to_limit: size), class: "pointer-events-none object-cover group-hover:opacity-75") %>
+<% else %>
+  <%= attachment.filename %>
+<% end %>
