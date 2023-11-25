@@ -20,9 +20,9 @@ This partial renders one or more attachments
   show_details = local_assigns.fetch(:show_details, field.show_preview_details)
 %>
 
-<ul role="list" class="grid grid-cols-4 gap-x-4 gap-y-8 auto-cols-fr">
+<div class="storage-attachments">
 <% field.attachments.each do |attachment| %>
-  <li class="relative">
+  <div class="attachments-listing">
     <%= render partial: 'fields/active_storage/item',
                locals: {
                    field: field,
@@ -31,6 +31,6 @@ This partial renders one or more attachments
                    size: size,
                    show_details: show_details
                } %>
-  </li>
+  </div>
 <% end %>
-</ul>  
+</div>

@@ -20,24 +20,22 @@ controlled via a boolean local variable.
   [x, y]
   Maximum size of the ActiveStorage preview.
 %>
-<div>
 <% if field.show_display_preview? && attachment.persisted? %>
-  <div class="group block w-full h-full overflow-hidden rounded-lg bg-gray-100 focus-within:ring-2 focus-within:ring-indigo-500 focus-within:ring-offset-2 focus-within:ring-offset-gray-100">
+  <div class="storage-preview">
     <%= render partial: 'fields/active_storage/preview', locals: local_assigns %>
   </div>
 <% end %>
 
 <% if show_details && attachment.persisted? %>
-  <p class="mt-2 block truncate text-sm font-medium text-gray-900">
+  <p class="storage-filename">
     <%= link_to attachment.filename, field.blob_url(attachment), title: attachment.filename %>
   </p>
 <% end %>
 
 <% if show_details && field.destroy_url.present? %>
   <% destroy_url = field.destroy_url.call(namespace, field.data.record, attachment) %>
-  <p class="block text-sm font-medium text-gray-500">
+  <p class="storage-delete">
     <%= link_to I18n.t("administrate.fields.active_storage.remove", default: 'Remove'),
     destroy_url, method: :delete, class: 'remove-attachment-link', data: { confirm: t("administrate.actions.confirm") } %>
   </p>
 <% end %>
-</div>
