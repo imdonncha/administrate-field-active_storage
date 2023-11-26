@@ -22,20 +22,15 @@ controlled via a boolean local variable.
 %>
 <% if field.show_display_preview? && attachment.persisted? %>
   <div class="storage-preview">
-    <%= render partial: 'fields/active_storage/preview', locals: local_assigns %>
+    <%= link_to field.blob_url(attachment), title: attachment.filename do %>
+      <%= render partial: 'fields/active_storage/preview', locals: local_assigns %>
+    <% end %>
   </div>
-<% end %>
-
-<% if show_details && attachment.persisted? %>
-  <p class="storage-filename">
-    <%= link_to attachment.filename, field.blob_url(attachment), title: attachment.filename %>
-  </p>
 <% end %>
 
 <% if show_details && field.destroy_url.present? %>
   <% destroy_url = field.destroy_url.call(namespace, field.data.record, attachment) %>
   <p class="storage-delete">
-    <%= link_to I18n.t("administrate.fields.active_storage.remove", default: 'Remove'),
-    destroy_url, method: :delete, class: 'remove-attachment-link', data: { confirm: t("administrate.actions.confirm") } %>
+    <%= delete_link_icon destroy_url, class: 'remove-attachment-link' %>
   </p>
 <% end %>
